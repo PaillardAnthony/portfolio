@@ -16,7 +16,7 @@ type Command = {
   group: 'Navigation' | 'Contact'
   run: () => void
 }
-
+//
 export function CommandPalette() {
   const { open, setOpen } = usePalette()
   const copy = useClipboard()
