@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Paillard — Développeur Web Full-Stack</title>
+    
+    <!-- Tailwind CSS Standard (sans configuration JS requise) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+        ::selection { background-color: #d97706; color: #ffffff; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-200 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Minimalist Header -->
+    <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+                <span class="font-bold text-zinc-100 text-sm tracking-tight group-hover:text-amber-500 transition-colors">Anthony Paillard</span>
+                <span class="text-xs text-zinc-500 font-mono hidden sm:inline-block">/ Développeur Web</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium text-zinc-400">
+                <a href="#about" class="hover:text-zinc-100 transition-colors">À propos</a>
+                <a href="#stack" class="hover:text-zinc-100 transition-colors">Stack</a>
+                <a href="#parcours" class="hover:text-zinc-100 transition-colors">Parcours</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button onclick="copyToClipboard('paillard.anthony@gmail.com', 'Adresse email copiée !')" class="px-3 py-1.5 text-xs font-mono text-zinc-300 hover:text-zinc-100 border border-zinc-800 hover:border-zinc-700 rounded-lg transition flex items-center gap-2">
+                    <i class="fa-regular fa-copy text-amber-500 text-xs"></i> paillard.anthony@gmail.com
+                </button>
+                <a href="#contact" class="px-3.5 py-1.5 text-xs font-semibold bg-zinc-100 hover:bg-white text-zinc-950 rounded-lg transition">
+                    Contact
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-zinc-400 hover:text-zinc-100">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-6 py-4 space-y-3 text-sm text-zinc-300">
+            <a href="#about" class="block hover:text-amber-500">À propos</a>
+            <a href="#stack" class="block hover:text-amber-500">Stack Technique</a>
+            <a href="#parcours" class="block hover:text-amber-500">Parcours Professionnel</a>
+            <div class="pt-3 border-t border-zinc-800 flex flex-col gap-2">
+                <button onclick="copyToClipboard('paillard.anthony@gmail.com', 'Email copié !')" class="w-full text-left py-2 text-xs font-mono text-zinc-300">
+                    <i class="fa-regular fa-copy text-amber-500 mr-2"></i> Copier paillard.anthony@gmail.com
+                </button>
+                <a href="#contact" class="w-full text-center py-2 text-xs font-semibold bg-zinc-100 text-zinc-950 rounded-lg">
+                    Prendre contact
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-zinc-800 text-zinc-100 px-4 py-3 rounded-xl border border-zinc-700 flex items-center gap-3 text-xs shadow-xl">
+        <i class="fa-solid fa-check text-emerald-400"></i>
+        <span id="toast-message">Message</span>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-6 space-y-28 py-16">
+
+        <!-- Hero Section -->
+        <section class="space-y-8 pt-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 font-mono">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Basé à Pau (64) • Disponible pour opportunités
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-zinc-100 leading-[1.15]">
+                Développeur Web Full-Stack <br/>
+                <span class="text-zinc-400 font-normal">orienté architecture & méthodes agiles.</span>
+            </h1>
+
+            <p class="text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                Diplômé du Titre Professionnel Développeur Logiciel. J'associe la rigueur du développement <strong class="text-zinc-200 font-semibold">TypeScript (Angular, NestJS)</strong>à une expérience concrète du travail en équipe Scrum.
+            </p>
+
+            <!-- Quick Info Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-zinc-800/80 text-xs">
+                <div>
+                    <span class="block text-zinc-500 font-mono uppercase tracking-wider text-[10px]">Expérience</span>
+                    <span class="font-semibold text-zinc-200 text-sm mt-0.5 block">1.5 an en Scrum (10 dev)</span>
+                </div>
+                <div>
+                    <span class="block text-zinc-500 font-mono uppercase tracking-wider text-[10px]">Diplôme</span>
+                    <span class="font-semibold text-zinc-200 text-sm mt-0.5 block">Titre Pro Bac+2 (GRETA)</span>
+                </div>
+                <div>
+                    <span class="block text-zinc-500 font-mono uppercase tracking-wider text-[10px]">Stack Principale</span>
+                    <span class="font-semibold text-zinc-200 text-sm mt-0.5 block">Angular • NestJS • Symfony</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-2">
+                <a href="#parcours" class="px-5 py-2.5 bg-zinc-100 hover:bg-white text-surface-950 font-semibold text-xs rounded-lg transition flex items-center gap-2">
+                    Voir le parcours <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+                <button onclick="copyToClipboard('paillard.anthony@gmail.com', 'Email copié !')" class="px-5 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-mono text-xs rounded-lg transition flex items-center gap-2">
+                    <i class="fa-regular fa-envelope text-accent"></i> paillard.anthony@gmail.com
+                </button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="space-y-6 pt-6">
+            <div class="border-b border-zinc-800 pb-4">
+                <span class="text-xs font-mono text-amber-500 uppercase tracking-widest">01 / Présentation</span>
+                <h2 class="text-2xl font-bold text-zinc-100 mt-1">Méthodologie & Vision</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-zinc-300 leading-relaxed">
+                <div class="md:col-span-2 space-y-4">
+                    <p>
+                        Mon parcours dans le développement logiciel repose sur la recherche constante de clarté, de maintenabilité et de pragmatisme. Formé au GRETA pour l'obtention du <strong>Titre Professionnel Développeur Logiciel</strong>, j'ai acquis des fondations solides en conception de bases de données et en développement orienté objet.
+                    </p>
+                    <p>
+                        Au sein de l'entreprise <strong>Orthalis</strong>, j'ai évolué au cœur d'une équipe produit de 10 développeurs fonctionnant sous la méthode <strong>Scrum</strong>. Cette expérience m'a appris l'importance des cérémonies agiles, des revues de code rigoureuses et d'un versionnage propre via Git et Gitea.
+                    </p>
+                    <p>
+                        Auparavant, la gestion de ma structure indépendante <strong>TOTEM</strong> m'a apporté une réelle autonomie dans la conduite de projets de A à Z : analyse du besoin client, choix d'architecture (Angular + Symfony), et livraison d'applications sur-mesure.
+                    </p>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 space-y-4 text-xs">
+                    <h3 class="font-bold text-zinc-100 text-sm border-b border-zinc-800 pb-2">Principes de travail</h3>
+                    <ul class="space-y-3 text-zinc-400">
+                        <li class="flex items-start gap-2">
+                            <span class="text-zinc-100 font-mono">—</span>
+                            <span><strong class="text-zinc-200">Rigueur Agile :</strong> Suivi précis des sous-tâches sur Jira et communication constante.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-zinc-100 font-mono">—</span>
+                            <span><strong class="text-zinc-200">Polyvalence Stack :</strong> À l'aise sur l'UI (Angular, CSS) comme sur le Back-End REST API (Nest, Symfony).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-zinc-100 font-mono">—</span>
+                            <span><strong class="text-zinc-200">Esprit de Synthèse :</strong> Capacité à traduire un besoin métier complexe en code lisible et modulaire.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack Section -->
+        <section id="stack" class="space-y-6">
+            <div class="border-b border-zinc-800 pb-4">
+                <span class="text-xs font-mono text-amber-500 uppercase tracking-widest">02 / Compétences</span>
+                <h2 class="text-2xl font-bold text-zinc-100 mt-1">Environnement Technique</h2>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2" id="filter-buttons">
+                <button onclick="filterStack('all')" class="filter-btn text-xs font-mono px-3.5 py-1.5 rounded-lg bg-zinc-100 text-zinc-950 font-semibold transition">Tous</button>
+                <button onclick="filterStack('frontend')" class="filter-btn text-xs font-mono px-3.5 py-1.5 rounded-lg bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-zinc-200 transition">Front-End</button>
+                <button onclick="filterStack('backend')" class="filter-btn text-xs font-mono px-3.5 py-1.5 rounded-lg bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-zinc-200 transition">Back-End & BDD</button>
+                <button onclick="filterStack('method')" class="filter-btn text-xs font-mono px-3.5 py-1.5 rounded-lg bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-zinc-200 transition">Méthodes & Outils</button>
+            </div>
+
+            <!-- Structured Tech Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="stack-grid">
+                
+                <!-- Angular -->
+                <div class="stack-item frontend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Angular</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Front-End</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Framework principal sur projet web métier. Composants, services, RxJS, routing, Material UI.</p>
+                </div>
+
+                <!-- NestJS & Node.js -->
+                <div class="stack-item backend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">NestJS / Node.js</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Back-End</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Conception d'API REST modulaires, injection de dépendances, architecture TypeScript serveur.</p>
+                </div>
+
+                <!-- Symfony & PHP -->
+                <div class="stack-item backend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Symfony & PHP</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Back-End</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Développement sous Symfony 4 & 5. Doctrine ORM, Twig, contrôleurs, gestion de formulaires et auth.</p>
+                </div>
+
+                <!-- MySQL & SQL -->
+                <div class="stack-item backend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">MySQL</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Bases de données</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Modélisation relationnelle (MCD/MLD), requêtes optimisées, jointures, gestion d'indexation.</p>
+                </div>
+
+                <!-- Scrum & Jira -->
+                <div class="stack-item method bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Scrum & Jira</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Méthodologie</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Pratique quotidienne en équipe de 10 dev. Sprints, Daily, Sizing de tickets, Rétrospectives.</p>
+                </div>
+
+                <!-- Git & Versioning -->
+                <div class="stack-item method bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Git & Gitea / GitHub</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Outils</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Workflows de branches, Pull Requests, Code Reviews, gestion de conflits et releases.</p>
+                </div>
+
+                <!-- Java Server Development -->
+                <div class="stack-item backend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Java</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Back-End / Systèmes</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">Développement et maintenance de serveurs de jeux multijoueurs, gestion multithread et Sockets.</p>
+                </div>
+
+                <!-- HTML5 / CSS3 / Frameworks UI -->
+                <div class="stack-item frontend bg-zinc-900 border border-zinc-800 p-5 rounded-xl space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-zinc-100 text-sm">Integration UI</span>
+                        <span class="text-[10px] font-mono text-zinc-500 uppercase">Front-End</span>
+                    </div>
+                    <p class="text-xs text-zinc-400">HTML5 sémantique, CSS responsive, Bootstrap, Angular Material, Tailwind CSS.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Parcours / Timeline Section -->
+        <section id="parcours" class="space-y-6">
+            <div class="border-b border-zinc-800 pb-4">
+                <span class="text-xs font-mono text-amber-500 uppercase tracking-widest">03 / Expériences</span>
+                <h2 class="text-2xl font-bold text-zinc-100 mt-1">Parcours Professionnel</h2>
+            </div>
+
+            <div class="space-y-8">
+                
+                <!-- Experience 1: Orthalis -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+                        <div>
+                            <h3 class="text-base font-bold text-zinc-100">Développeur Web Full-Stack</h3>
+                            <p class="text-xs text-zinc-400 font-mono mt-0.5">Orthalis • Équipe Produit Agile (10 Développeurs)</p>
+                        </div>
+                        <span class="text-xs font-mono text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded w-fit">
+                            Avril 2022 – Novembre 2023
+                        </span>
+                    </div>
+
+                    <ul class="space-y-2 text-xs text-zinc-300 list-disc list-inside leading-relaxed">
+                        <li>Développement et maintenance continue d'applications web métiers avec <strong class="text-zinc-100">Angular, Node.js et NestJS</strong>.</li>
+                        <li>Intégration rigoureuse dans les rituels de la méthode <strong class="text-zinc-100">Scrum</strong> (Sprint Planning, Stand-up quotidien, Démo, Rétrospective).</li>
+                        <li>Gestion fine du suivi de tickets sous <strong class="text-zinc-100">Jira</strong> et contrôle de version partagé via <strong class="text-zinc-100">Gitea/Git</strong> avec revues de code systématiques.</li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-2 pt-1 text-[11px] font-mono text-zinc-400">
+                        <span class="px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800">Angular</span>
+                        <span class="px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800">NestJS</span>
+                        <span class="px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800">TypeScript</span>
+                        <span class="px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800">Scrum / Jira</span>
+                    </div>
+                </div>
+
+                <!-- Experience 2: TOTEM -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-800/80 pb-3">
+                        <div>
+                            <h3 class="text-base font-bold text-zinc-100">Développeur Indépendant</h3>
+                            <p class="text-xs text-zinc-400 font-mono mt-0.5">TOTEM • Conception d'applications & Outils web sur-mesure</p>
+                        </div>
+                        <span class="text-xs font-mono text-zinc-400 bg-zinc-800 px-2.5 py-1 rounded w-fit">
+                            2018 – 2022
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-4 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-zinc-200">Projet Webinds</span>
+                                <span class="font-mono text-[10px] text-zinc-500">2019 – 2022</span>
+                            </div>
+                            <p class="text-zinc-400">Conception architecturale et réalisation d'une application modulable complexe.</p>
+                            <div class="flex gap-2 font-mono text-[10px] text-amber-500">
+                                <span>Angular</span> • <span>Symfony 4</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-zinc-950 rounded-lg border border-zinc-800/80 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-zinc-200">Projet Update</span>
+                                <span class="font-mono text-[10px] text-zinc-500">2018 – 2019</span>
+                            </div>
+                            <p class="text-zinc-400">Outil de gestion automatisée de planning et de ressources RH.</p>
+                            <div class="flex gap-2 font-mono text-[10px] text-amber-500">
+                                <span>PHP</span> • <span>MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formation -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-mono text-amber-500">Diplôme obtenu — GRETA</span>
+                        <h3 class="text-base font-bold text-zinc-100 mt-0.5">Titre Professionnel Développeur Logiciel</h3>
+                        <p class="text-xs text-zinc-400 mt-1">Niveau III (European Qualification Level 5 / Bac+2) — Spécialité Web & Mobile</p>
+                    </div>
+                    <div class="text-xs font-mono text-zinc-500 bg-zinc-950 px-3 py-2 rounded border border-zinc-800 w-fit shrink-0">
+                        Formation Continue
+                    </div>
+                </div>
+
+            </div>
+        </section>
+                <!-- Complementary soft skills -->
+                <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-xl space-y-4 text-xs">
+                    <h3 class="text-sm font-bold text-zinc-100 border-b border-zinc-800 pb-2">Expériences complémentaires</h3>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Mes expériences passées en restauration (Chef de cuisine, extras) et en animation m'ont apporté une capacité avérée à travailler efficacement en équipe sous forte pression et un sens aigu du service client.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="bg-zinc-900 border-t border-zinc-800 py-16 px-6">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-800 pb-10">
+                <div class="space-y-2">
+                    <span class="text-xs font-mono text-amber-500 uppercase tracking-widest">Contact</span>
+                    <h2 class="text-3xl font-bold text-zinc-100">Discutons de votre projet ou poste.</h2>
+                    <p class="text-zinc-400 text-sm max-w-lg">
+                        Disponible pour un échange professionnel sur Pau (64) ou à distance.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="mailto:paillard.anthony@gmail.com" class="px-5 py-2.5 bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-xs rounded-lg transition flex items-center gap-2">
+                        <i class="fa-regular fa-envelope"></i> Envoyer un email
+                    </a>
+                    <a href="tel:0625337743" class="px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-mono rounded-lg transition flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-amber-500"></i> 06 25 33 77 43
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono gap-4">
+                <span>© Anthony Paillard — Développeur Web</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard(text, message) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast(message);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function filterStack(category) {
+            const items = document.querySelectorAll('.stack-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-zinc-100', 'text-zinc-950', 'font-semibold');
+                btn.classList.add('bg-zinc-900', 'text-zinc-400', 'border', 'border-zinc-800');
+            });
+
+            event.target.classList.remove('bg-zinc-900', 'text-zinc-400', 'border', 'border-zinc-800');
+            event.target.classList.add('bg-zinc-100', 'text-zinc-950', 'font-semibold');
+
+            items.forEach(item => {
+                item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+            });
+        }
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    </script>
+</body>
+</html>
