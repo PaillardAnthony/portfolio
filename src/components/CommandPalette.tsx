@@ -8,7 +8,7 @@ import { useToast } from '@/context/toast'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
 import styles from './CommandPalette.module.css'
 
-//t
+
 type Command = {
   id: string
   label: string
