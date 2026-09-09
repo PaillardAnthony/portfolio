@@ -1,0 +1,228 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-bar);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+}
+
+.pulse[data-on='true'] {
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  animation: ping 2.4s var(--ease) infinite;
+}
+
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 240, 168, 0.5);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgba(94, 240, 168, 0);
+  }
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-faint);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--fg-muted);
+  transition:
+    color 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.link:hover {
+  color: var(--fg);
+  background: var(--bg-panel);
+}
+
+.link[data-active='true'] {
+  color: var(--fg);
+}
+
+.link[data-active='true']::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.linkIndex {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-dim);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--fg-muted);
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.iconLink:hover {
+  color: var(--fg);
+  border-color: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+.cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-muted);
+  transition:
+    border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.cmd:hover {
+  border-color: var(--accent-dim);
+  color: var(--fg);
+}
+
+.kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--bg-inset);
+  border: 1px solid var(--line);
+  color: var(--fg-muted);
+}
+
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+
+.menuToggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--fg);
+  border-radius: 2px;
+  transition: transform 0.24s var(--ease);
+}
+
+.menuToggle span[data-open='true']:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menuToggle span[data-open='true']:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--amber));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.mobileMenu {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raised);
+  padding: 8px 24px 14px;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 4px;
+  text-align: left;
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 15px;
+}
+
+.mobileLink:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 760px) {
+  .nav,
+  .cmd span {
+    display: none;
+  }
+  .cmd {
+    padding: 7px 10px;
+  }
+  .menuToggle {
+    display: flex;
+  }
+}

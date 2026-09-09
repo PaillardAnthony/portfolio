@@ -1,0 +1,49 @@
+.region {
+  position: fixed;
+  right: 24px;
+  bottom: 56px;
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.8);
+}
+
+.glyph {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toast[data-tone='success'] .glyph {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.toast[data-tone='error'] .glyph {
+  background: rgba(255, 107, 107, 0.16);
+  color: var(--danger);
+}
+
+@media (max-width: 560px) {
+  .region {
+    right: 16px;
+    left: 16px;
+    bottom: 52px;
+  }
+}

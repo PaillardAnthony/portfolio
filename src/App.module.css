@@ -1,0 +1,15 @@
+.main {
+  padding-bottom: 40px;
+}
+
+.content {
+  display: grid;
+  gap: 120px;
+  padding: 8px 0 96px;
+}
+
+@media (max-width: 640px) {
+  .content {
+    gap: 88px;
+  }
+}
